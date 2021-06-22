@@ -26,4 +26,3 @@ const EmblemType = new GraphQLObjectType({
 });
 
 module.exports = EmblemType;
-//!@@@@@@@@@@@@@@@@@@@@@@@@@ Completing the God Type
