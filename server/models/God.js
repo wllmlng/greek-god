@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 mongoose.set("useCreateIndex", true);
 const Schema = mongoose.Schema;
 
+
 const GodSchema = new Schema({
   name: {
     type: String,
@@ -50,5 +51,11 @@ const GodSchema = new Schema({
     }
   ]
 });
+
+GodSchema.statics.findRelatives = function(godId, type) {
+  return this.findById(godId)
+    .populate(`${type}`)
+    .then(god => god[type]);
+};
 
 module.exports = mongoose.model("god", GodSchema);
