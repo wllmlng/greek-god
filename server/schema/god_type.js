@@ -34,11 +34,22 @@ const GodType = new GraphQLObjectType({
                 .then(god => god.emblems);
         }
     },
-    //! @@@@@@@@@@@@@@@@NOT SURE@@@@@@@@@@@@@@@@@@2
     parents: {
       type: new GraphQLList(GodType),
       resolve(parentValue) {
         return God.findRelatives(parentValue.id, 'parents');
+      }
+    },
+    childrens: {
+      type: new GraphQLList(GodType),
+      resolve(parentValue) {
+        return God.findRelatives(parentValue.id, 'children');
+      }
+    },
+    siblings: {
+      type: new GraphQLList(GodType),
+      resolve(parentValue) {
+        return God.findRelatives(parentValue.id, 'siblings');
       }
     },
   })
